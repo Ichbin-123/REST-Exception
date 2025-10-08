@@ -6,7 +6,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PaymentService {
+
     public PaymentDetails processPayment(){
+        // Simuliamo che sul conto non ci siano abbastanza fondi
+        throw new NotEnoughMoneyException();
+    }
+
+
+    public PaymentDetails processPaymentPayPall(){
         // Simuliamo che sul conto non ci siano abbastanza fondi
         throw new NotEnoughMoneyException();
     }

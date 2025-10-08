@@ -1,6 +1,7 @@
 package com.example.demo_REST_Exception.controller;
 
 import com.example.demo_REST_Exception.exception.NotEnoughMoneyException;
+import com.example.demo_REST_Exception.model.dto.ErrorDetails;
 import com.example.demo_REST_Exception.model.dto.PaymentDetails;
 import com.example.demo_REST_Exception.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,19 @@ public class PaymentController {
     @PostMapping("/payment")
     // ? vuol dire che possiamo tornare qualsiasi oggetto come
     // body della risposta HTTP
-    public ResponseEntity<?> makePayment() {
+    public ResponseEntity<PaymentDetails> makePayment() {
 
-        try {
-            PaymentDetails paymentDetails = paymentService.processPayment();
-            return ResponseEntity.ok(paymentDetails); // ok è una scorciatoia per status ok
-        } catch (NotEnoughMoneyException nemEx){
-            return  ResponseEntity.badRequest().build();
-        }
+        PaymentDetails paymentDetails = paymentService.processPayment();
+        return ResponseEntity.ok(paymentDetails); // ok è una scorciatoia per status ok
+
+
+    }
+
+    @PostMapping("/paymentPayPal")
+    public ResponseEntity<PaymentDetails> makePaymentPayPal(){
+
+        PaymentDetails paymentDetails = paymentService.processPaymentPayPall();
+        return ResponseEntity.ok(paymentDetails); // ok è una scorciatoia per status ok
 
     }
 }

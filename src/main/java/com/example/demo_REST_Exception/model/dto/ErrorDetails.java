@@ -10,6 +10,7 @@ public class ErrorDetails {
     }
 
     public void setMessage(String message) {
+
         this.message = message;
     }
 }
