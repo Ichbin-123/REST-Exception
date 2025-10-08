@@ -7,6 +7,8 @@ import com.example.demo_REST_Exception.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,10 +24,11 @@ public class PaymentController {
     @PostMapping("/payment")
     // ? vuol dire che possiamo tornare qualsiasi oggetto come
     // body della risposta HTTP
-    public ResponseEntity<PaymentDetails> makePayment() {
-
-        PaymentDetails paymentDetails = paymentService.processPayment();
-        return ResponseEntity.ok(paymentDetails); // ok è una scorciatoia per status ok
+    public ResponseEntity<PaymentDetails> makePayment(@RequestBody PaymentDetails paymentDetails) {
+        System.out.println("Pagamento effettuato di € " + paymentDetails.getAmount());
+        return ResponseEntity.accepted().body(paymentDetails);
+//        PaymentDetails paymentDetails = paymentService.processPayment();
+//        return ResponseEntity.ok(paymentDetails); // ok è una scorciatoia per status ok
 
 
     }
@@ -37,4 +40,6 @@ public class PaymentController {
         return ResponseEntity.ok(paymentDetails); // ok è una scorciatoia per status ok
 
     }
+
+
 }

@@ -1,6 +1,6 @@
 package com.example.demo_REST_Exception.model.dto;
 
-// Il modello dei dati che restituiamo  in caso di errore
+// Il modello dei dati che restituiamo in caso di errore
 public class ErrorDetails {
 
     private String message;
